@@ -112,42 +112,12 @@
 
     <h1>Buy Two Million Shirts</h1>
 
-    <div id="smart-button-container">
-      <div style="text-align: center;">
-        <div id="paypal-button-container"></div>
-      </div>
-    </div>
-    <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD" data-sdk-integration-source="button-factory"></script>
-    <script>
-      function initPayPalButton() {
-        paypal.Buttons({
-          style: {
-            shape: 'pill',
-            color: 'gold',
-            layout: 'vertical',
-            label: 'buynow',
-            
-          },
-
-          createOrder: function(data, actions) {
-            return actions.order.create({
-              purchase_units: [{"description":"Two Million Shirts, a book-lengthed poem. First 50 orders come with a copy of Fifty Two Million Blurbs","amount":{"currency_code":"USD","value":18.82,"breakdown":{"item_total":{"currency_code":"USD","value":13.95},"shipping":{"currency_code":"USD","value":4},"tax_total":{"currency_code":"USD","value":0.87}}}}]
-            });
-          },
-
-          onApprove: function(data, actions) {
-            return actions.order.capture().then(function(details) {
-              alert('Transaction completed by ' + details.payer.name.given_name + '!');
-            });
-          },
-
-          onError: function(err) {
-            console.log(err);
-          }
-        }).render('#paypal-button-container');
-      }
-      initPayPalButton();
-    </script>
+    <form action="https://paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----">
+    <input type="image" src="https://paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
 
     <h1 id="partial1">A partial list of Two Million Shirts</h1>
 
